@@ -1,0 +1,84 @@
+<h1 class="text-info text-center p-3 display-5">Sign In</h1>
+<div class="row">
+  <div class="col"></div>
+  <div class="col-md-6">
+    <div class="container">
+      <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+        <div class="input-group py-3">
+          <span class="input-group-text" id="addon-wrapping"
+            ><i class="fa fa-envelope"></i
+          ></span>
+          <input
+            type="email"
+            name="email"
+            ngModel
+            class="form-control"
+            placeholder="Email Address"
+            aria-label="Username"
+            aria-describedby="addon-wrapping"
+            required
+            email
+            #modelEmail="ngModel"
+            [ngClass]="
+              modelEmail.invalid && modelEmail.dirty ? 'is-invalid' : ''
+            "
+          />
+          <div *ngIf="modelEmail.invalid" class="invalid-feedback">
+            Please enter a valid email
+          </div>
+        </div>
+        <div class="input-group py-3">
+          <span class="input-group-text" id="addon-wrapping"
+            ><i class="fa fa-lock"></i
+          ></span>
+          <input
+            type="password"
+            name="password"
+            ngModel
+            class="form-control"
+            placeholder="password"
+            aria-label="Username"
+            aria-describedby="addon-wrapping"
+            required
+            minlength="8"
+            pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+            #modelPassword="ngModel"
+            [ngClass]="
+              modelPassword.invalid && modelPassword.dirty ? 'is-invalid' : ''
+            "
+          />
+          <div
+            *ngIf="modelPassword.errors?.['required']&& modelPassword.dirty"
+            class="invalid-feedback"
+          >
+            please enter a valid password.
+          </div>
+          <div
+            *ngIf="modelPassword.errors?.['minlength']"
+            class="invalid-feedback"
+          >
+            password should atleast
+            {{modelPassword?.errors?.['minlength']?.['requiredLength']}}
+            characters.
+          </div>
+        </div>
+        <div>
+          <p>Not an user ? <a href="#"> Sign Up</a></p>
+        </div>
+        <div *ngIf="error.length > 0" class="text-danger">
+          {{ error }}
+        </div>
+        <div class="d-grid gap-2 py-4">
+          <button
+            class="btn btn-info"
+            type="submit"
+            [disabled]="loginForm.invalid"
+          >
+            Sign In
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col"></div>
+</div>

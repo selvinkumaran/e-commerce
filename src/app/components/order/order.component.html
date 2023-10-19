@@ -1,0 +1,23 @@
+<div class="container">
+  <h1 class="text-info text-center mt-4 display-5">Order</h1>
+  <table class="table table-striped my-5">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Order Id</th>
+        <th scope="col">Date</th>
+        <th scope="col">Products</th>
+        <th scope="col">Price</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let product of cartProducts">
+      <tr>
+        <td scope="col">{{ product.id }}</td>
+        <td scope="col">{{ todayDate | date }}</td>
+        <td scope="col">{{ product.title }}</td>
+        <td scope="col">{{ product.price*product.count }}</td>
+        <td scope="col"><button class="btn btn-warning">Pending</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

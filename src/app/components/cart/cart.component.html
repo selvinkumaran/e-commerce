@@ -1,0 +1,29 @@
+<div class="container">
+  <h1 class="text-info text-center mt-4 display-5">Cart</h1>
+  <table class="table table-striped my-5">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Products</th>
+        <th scope="col">Products Name</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Price</th>
+        <th scope="col">Total Price</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let product of cartProducts">
+      <tr>
+        <td scope="col">
+          <img src="{{ product.image }}" alt="" width="75px" height="75px" />
+        </td>
+        <td scope="col">{{ product.title }}</td>
+        <td scope="col">{{ product.count }}</td>
+        <td scope="col">{{ product.price }}</td>
+        <td scope="col">{{ product.price * product.count }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="text-end">
+    <p>Total-{{ calculateTotalPrice() }}</p>
+    <button type="button" (click)="ResetCart()" class="btn btn-primary my-3">Check Out</button>
+  </div>
+</div>
